@@ -1,6 +1,6 @@
 def call(Map config){
   stage('SonarQube') {
-        steps {
+        
             script {
                 withSonarQubeEnv(config.sonarEnv ?: 'SONAR_LATEST') {
                     sh """
@@ -10,7 +10,7 @@ def call(Map config){
                     -Dsonar.java.binaries=target/classes
                     """
                 }
-            }
+            
         }
     }
 }
