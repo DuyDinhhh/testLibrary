@@ -1,4 +1,5 @@
  def call() {
+   stage('Code Quality Analysis') {
          env.SCANNER_HOME = tool 'sonar-scanner'
          withSonarQubeEnv('SONAR_LATEST') {
                sh """
@@ -9,4 +10,5 @@
                """
            }
        }
+ }
 
