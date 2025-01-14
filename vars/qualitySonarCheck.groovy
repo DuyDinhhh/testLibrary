@@ -1,7 +1,7 @@
  
 def call(Map config) {
          withSonarQubeEnv(config.sonarEnv ?: 'SONAR_LATEST') {
-            def scannerHome = config.scannerHome ?: env.SCANNER_HOME
+            def scannerHome = config.scannerHome 
             def projectKey = config.BRANCH_NAME.replace('/', '_')
             def projectName = config.BRANCH_NAME
 
