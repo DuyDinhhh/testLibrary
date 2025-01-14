@@ -1,4 +1,5 @@
  def call() {
+         SCANNER_HOME = tool 'sonar-scanner'
          withSonarQubeEnv('SONAR_LATEST') {
                sh """
                ${env.SCANNER_HOME}/bin/sonar-scanner \
