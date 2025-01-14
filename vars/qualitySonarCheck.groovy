@@ -1,15 +1,12 @@
- 
-def call(Map config) {
-         withSonarQubeEnv(config.sonarEnv ?: 'SONAR_LATEST') {
-            def scannerHome = config.scannerHome 
-            def projectKey = config.BRANCH_NAME.replace('/', '_')
-            def projectName = config.BRANCH_NAME
-
+ def call() {
+    stage('Code Quality Scan'){
+         withSonarQubeEnv(env.sonarEnv ?: 'SONAR_LATEST') {
             sh """
-            ${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=${projectKey} \
-            -Dsonar.projectName=${projectName} \
+            ${env.scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=${env.BRANCH_NAME.replace('/', '_')} \
+            -Dsonar.projectName=${env.BRANCH_NAME} \
             -Dsonar.java.binaries=target/classes
             """
         }
+    }
 }
